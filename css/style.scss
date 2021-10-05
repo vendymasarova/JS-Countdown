@@ -1,3 +1,139 @@
-$cl--gryish-blue: hsl(237, 18%, 59%);
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
+
+$cl--very-dark-blue: hsl(234, 19%, 21%);
+$cl--grayish-blue: hsl(237, 18%, 59%);
+$cl--dark-desaturated-blue: hsl(236, 21%, 26%);
+$cl--mostly-black-blue: hsl(234, 17%, 12%);
 $cl--soft-red: hsl(345, 95%, 68%);
 $cl--white: hsl(0, 0%, 100%);
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 87.5%;
+  color: $cl--white;
+  background: $cl--mostly-black-blue;
+  height: 100vh;
+  //   background-image: url("../images/bg-stars.svg");
+  background-image: url("../images/bg-stars.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.countdown {
+  background-image: url("../images/pattern-hills.svg");
+  background-size: contain;
+  background-position: bottom;
+
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  z-index: 999;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 120px));
+  grid-template-rows: repeat(auto-fit, minmax(2rem, 120px));
+  grid-gap: 1.5rem;
+  h1 {
+    font-size: 1.3rem;
+    grid-column: 1/5;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    max-width: 120px;
+    max-height: 120px;
+    grid-row: 2/3;
+    background: linear-gradient(
+      to bottom,
+      $cl--very-dark-blue 50%,
+      $cl--dark-desaturated-blue 50%
+    );
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: relative;
+
+    h4 {
+      position: absolute;
+      bottom: -40px;
+      opacity: 0.8;
+      color: $cl--grayish-blue;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+    .day,
+    .hour,
+    .minute,
+    .second {
+      background-image: linear-gradient(
+        to bottom,
+        hsl(345, 96%, 63%) 50%,
+        $cl--soft-red 50%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+      font-size: 3.3rem;
+    }
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      border-radius: 50%;
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      background: $cl--mostly-black-blue;
+      transform: translate(-50%, -50%);
+    }
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      border-radius: 50%;
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      background: $cl--mostly-black-blue;
+      transform: translate(50%, -50%);
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .countdown {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 70px));
+    grid-template-rows: repeat(auto-fit, minmax(2rem, 70px));
+    grid-gap: 0.8rem;
+
+    h1 {
+      font-size: 1rem;
+    }
+    .wrapper {
+      min-width: 70px;
+      max-width: 70px;
+      max-height: 70px;
+      h4 {
+        font-size: 0.6rem;
+      }
+      .day,
+      .hour,
+      .minute,
+      .second {
+        font-size: 2.3rem;
+      }
+    }
+  }
+}
